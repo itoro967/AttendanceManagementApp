@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+
+Route::middleware(['auth'])->group(function () {
+  Route::get('attendance', [WorkController::class, 'attendance']);
+});

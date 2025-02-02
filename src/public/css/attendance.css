@@ -1,0 +1,45 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 90px 0;
+}
+
+.status {
+  color: #696969;
+  background-color: #C8C8C8;
+  padding: 5px 15px;
+  border-radius: 15px;
+}
+
+.datetime {
+  margin: 10px;
+}
+
+.date {
+  font-size: 45px;
+  margin: 10px;
+}
+
+.time {
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+}
+
+.working-button {
+  display: inline-block;
+  color: #FFFFFF;
+  background-color: #000000;
+  font-weight: bold;
+  font-size: 40px;
+  padding: 15px 70px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.breaking {
+  color: #000000;
+  background-color: #FFFFFF;
+}

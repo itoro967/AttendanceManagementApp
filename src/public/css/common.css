@@ -1,3 +1,7 @@
+body {
+  background-color: #ececec;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -9,5 +13,18 @@
 }
 
 .header-button {
-  margin: 10px;
+  margin: 0 10px;
+}
+
+.logout-button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+}
+
+.logout {
+  display: inline;
 }
