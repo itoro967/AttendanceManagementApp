@@ -10,6 +10,8 @@
       勤務中
       @elseif ($state==2)
       休憩中
+      @elseif ($state==9)
+      退勤済
       @endif
     </div>
     <div class="datetime">
@@ -18,20 +20,23 @@
     </div>
     <div class="button-box">
       @if ($state==0)
-      <a href="?work=1" class="working-button">出勤</a>
+      <a href="?state=1" class="working-button">出勤</a>
       @elseif ($state==1)
-      <a href="?work=0" class="working-button">退勤</a>
-      <a href="?work=2" class="working-button breaking">休憩 入</a>
+      <a href="?state=0" class="working-button">退勤</a>
+      <a href="?state=2" class="working-button breaking">休憩 入</a>
       @elseif ($state==2)
-      <a href="?work=1" class="working-button breaking">休憩 戻</a>
+      <a href="?state=1" class="working-button breaking">休憩 戻</a>
+      @elseif ($state==9)
+      お疲れ様でした。
       @endif
     </div>
   </div>
 </x-common>
 
 <script>
+  let week = ['日', '月', '火', '水', '木', '金', '土'];
+
   function clock() {
-    let week = ['日', '月', '火', '水', '木', '金', '土'];
     let nowTime = new Date();
     let year = String(nowTime.getFullYear());
     let month = String(nowTime.getMonth() + 1).padStart(2, '0');
@@ -43,5 +48,5 @@
     document.getElementById('time').innerText = `${hours}:${minutes}`;
   };
   clock();
-  setInterval(clock, 1000);
+  setInterval(clock, 500);
 </script>
