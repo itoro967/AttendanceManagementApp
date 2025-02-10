@@ -19,4 +19,5 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
   Route::get('attendance', [WorkController::class, 'attendance']);
+  Route::post('punch', [WorkController::class, 'punch']);
 });

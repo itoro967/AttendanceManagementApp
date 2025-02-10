@@ -19,16 +19,19 @@
       <div class="time" id="time"></div>
     </div>
     <div class="button-box">
-      @if ($state==0)
-      <a href="?state=1" class="working-button">出勤</a>
-      @elseif ($state==1)
-      <a href="?state=0" class="working-button">退勤</a>
-      <a href="?state=2" class="working-button breaking">休憩 入</a>
-      @elseif ($state==2)
-      <a href="?state=1" class="working-button breaking">休憩 戻</a>
-      @elseif ($state==9)
-      お疲れ様でした。
-      @endif
+      <form action="/punch" method="post">
+        @csrf
+        @if ($state==0)
+        <button name="punch" value="1" class="working-button">出勤</button>
+        @elseif ($state==1)
+        <button name="punch" value="9" class="working-button">退勤</button>
+        <button name="punch" value="2" class="working-button breaking">休憩 入</button>
+        @elseif ($state==2)
+        <button name="punch" value="3" class="working-button breaking">休憩 戻</button>
+        @elseif ($state==9)
+        お疲れ様でした。
+        @endif
+      </form>
     </div>
   </div>
 </x-common>
