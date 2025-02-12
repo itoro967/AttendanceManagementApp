@@ -19,7 +19,7 @@
       <div class="time" id="time"></div>
     </div>
     <div class="button-box">
-      <form action="punch" method="post">
+      <form action="/attendance/punch" method="post">
         @csrf
         @if ($state==0)
         <button name="punch" value="1" class="working-button">出勤</button>
