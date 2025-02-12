@@ -7,7 +7,7 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 40px;
-  background-color: black;
+  background-color: #000000;
   color: #FFFFFF;
   vertical-align: middle;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 .logout-button {
-  color: white;
+  color: #FFFFFF;
   background-color: transparent;
   border: none;
   cursor: pointer;

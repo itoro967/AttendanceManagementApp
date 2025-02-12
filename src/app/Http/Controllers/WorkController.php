@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class WorkController extends Controller
 {
-    private function state_check()
+    private function stateCheck()
     {
         $is_work = Work::Today()->exists();
         if ($is_work) {
@@ -31,15 +31,17 @@ class WorkController extends Controller
 
         return $state;
     }
+
     #state 0:未出社 1:出社 2:休憩中 9:退勤 
     public function attendance()
     {
-        $state = $this->state_check();
+        $state = $this->stateCheck();
         return view('attendance', compact('state'));
     }
+
     public function punch(Request $request)
     {
-        $state = $this->state_check();
+        $state = $this->stateCheck();
         $punch = $request->input('punch');
         #出社
         if ($punch == '1' and $state == 0) {
@@ -62,5 +64,13 @@ class WorkController extends Controller
             $state = 9;
         }
         return view('attendance', compact('state'));
+    }
+    public function attendanceList(Request $request)
+    {
+        $month = $request->input('month', today()->format('Y-m'));
+        $works = Auth()->user()->works()->whereYear('date', '=', substr($month, 0, 4))
+            ->whereMonth('date', '=', substr($month, 5, 2))
+            ->get();
+        return view('attendancelist', compact('works', 'month'));
     }
 }

@@ -1,0 +1,26 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 90px 0;
+}
+
+.table {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.tr {
+  border: 3px solid #ececec;
+  border-left: 0;
+  border-right: 0;
+}
+
+.th,
+.td {
+  padding: 10px 30px;
+}
+
+.td--bold {
+  font-weight: bold;
+}

@@ -18,6 +18,9 @@ Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
-  Route::get('attendance', [WorkController::class, 'attendance']);
-  Route::post('punch', [WorkController::class, 'punch']);
+  Route::prefix('attendance')->group(function () {
+    Route::get('', [WorkController::class, 'attendance']);
+    Route::get('list', [WorkController::class, 'attendancelist']);
+    Route::post('punch', [WorkController::class, 'punch']);
+  });
 });
