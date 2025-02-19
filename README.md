@@ -41,38 +41,15 @@ works{
   date date
   time begin_at
   time finish_at
+  unsigned_TinyInteger type
   string note
+  bool is_confirmed
   timestamp created_at
   timestamp updated_at
 }
 breaks{
   unsigned_bigint id PK
   unsigned_bigint work_id FK
-  time begin_at
-  time finish_at
-  timestamp created_at
-  timestamp updated_at
-}
-corrects{
-  unsigned_bigint id PK
-  unsigned_bigint work_id FK
-  bool is_confirmed
-  timestamp created_at
-  timestamp updated_at
-}
-correct_works{
-  unsigned_bigint id PK
-  unsigned_bigint user_id FK
-  date date
-  time begin_at
-  time finish_at
-  string note
-  timestamp created_at
-  timestamp updated_at
-}
-correct_breaks{
-  unsigned_bigint id PK
-  unsigned_bigint correct_work_id FK
   time begin_at
   time finish_at
   timestamp created_at

@@ -15,19 +15,22 @@ class Work extends Model
     protected $fillable = [
         'user_id',
         'date',
+        'type',
+        'note',
+        'is_confirmed',
         'begin_at',
         'finish_at',
     ];
 
-    public function scopeToday(Builder $query): void
-    {
-        $query->where('user_id', Auth::user()->id)->where('date', today());
-    }
     public function rests(): HasMany
     {
         return $this->hasMany(Rest::class);
     }
 
+    public function scopeToday(Builder $query): void
+    {
+        $query->where('user_id', Auth::user()->id)->where('date', today());
+    }
     /**
      * 労働時間取得
      *
@@ -55,6 +58,5 @@ class Work extends Model
             $totalDuration += $duration;
         }
         return $totalDuration;
-        // return $this::rests()->select('begin_at', 'finish_at');
     }
 }

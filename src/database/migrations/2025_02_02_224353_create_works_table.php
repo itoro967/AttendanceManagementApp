@@ -17,6 +17,9 @@ return new class extends Migration
             $table->date('date');
             $table->time('begin_at')->nullable();
             $table->time('finish_at')->nullable();
+            $table->unsignedTinyInteger('type');
+            $table->string('note')->nullable();
+            $table->boolean('is_confirmed')->nullable();
             $table->timestamps();
         });
     }

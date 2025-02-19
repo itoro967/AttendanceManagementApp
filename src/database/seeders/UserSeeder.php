@@ -42,7 +42,8 @@ class UserSeeder extends Seeder
                 $work = $user->works()->create([
                     'date' => $date,
                     'begin_at' => $this->randTime('08:00:00', '08:29:59'),
-                    'finish_at' =>  $this->randTime('17:15:00', "20:59:59")
+                    'finish_at' =>  $this->randTime('17:15:00', "20:59:59"),
+                    'type' => 0,
                 ]);
                 $work->rests()->create([
                     'begin_at' => $this->randTime('12:00:00', '12:10:00'),

@@ -27,14 +27,26 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($works as $work)
-        <tr class="tr">
-          <td class="td">{{ Carbon\Carbon::parse($work->date)->isoFormat('MM/DD(ddd)')}}</td>
+        @foreach ($periods as $period)
+        @php
+        $work = $works->where('date',$period->format('Y-m-d'))->first()
+        @endphp
+        <tr @class(["tr","not_confirmed"=> !($work->is_confirmed ?? TRUE)])>
+          <td class="td">{{ Carbon\Carbon::parse($period)->isoFormat('MM/DD(ddd)')}}</td>
+          @isset($work)
           <td class="td">{{ Carbon\Carbon::parse($work->begin_at)->format('H:i') }}</td>
           <td class="td">{{ Carbon\Carbon::parse($work->finish_at)->format('H:i') }}</td>
           <td class="td">{{ Carbon\Carbon::parse($work->getRestSum())->format('H:i') }}</td>
           <td class="td">{{ Carbon\Carbon::parse($work->getWorkTime()+$work->getRestSum())->format('H:i') }}</td>
+          <td class="td td--bold"><a href="{{$work->id}}">詳細</a></td>
+          @endisset
+          @empty($work)
+          <td class="td">--:--</td>
+          <td class="td">--:--</td>
+          <td class="td">--:--</td>
+          <td class="td">--:--</td>
           <td class="td td--bold"><a href="#">詳細</a></td>
+          @endempty
         </tr>
         @endforeach
       </tbody>
