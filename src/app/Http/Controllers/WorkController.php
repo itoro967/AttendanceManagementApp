@@ -77,11 +77,11 @@ class WorkController extends Controller
         $periods = CarbonPeriod::create($startOfMonth, $endOfMonth)->toArray();
 
         #日付毎の最大typeを取得
-        $subQuery = Auth()->user()->works()->selectRaw('date as d,MAX(type) as t')
+        $subQuery = Auth::user()->works()->selectRaw('date as d,MAX(type) as t')
             ->whereYear('date', '=', substr($month, 0, 4))
             ->whereMonth('date', '=', substr($month, 5, 2))->groupBy('date');
 
-        $works = Auth()->user()->works()->joinSub($subQuery, 'max_works', function ($join) {
+        $works = Auth::user()->works()->joinSub($subQuery, 'max_works', function ($join) {
             $join->on('works.type', '=', 'max_works.t')
                 ->on('works.date', '=', 'max_works.d');
         })->get();
@@ -90,7 +90,7 @@ class WorkController extends Controller
     }
     public function detail(string $id)
     {
-        $work = Work::find($id);
+        $work = Auth::user()->works->find($id);
         return view('attendanceDetail', compact('work'));
     }
 }
