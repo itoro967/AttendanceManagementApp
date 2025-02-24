@@ -20,4 +20,10 @@ class CorrectController extends Controller
         }
         return redirect('/attendance/list');
     }
+    public function list(Request $request)
+    {
+        $is_confirmed = $request->input('confirmed') ?? 0;
+        $corrects = Auth::user()->works()->where('type', '<>', 0)->where('is_confirmed', $is_confirmed)->with('user')->get();
+        return view('correctList', compact('corrects'));
+    }
 }

@@ -27,4 +27,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('punch', [WorkController::class, 'punch']);
     Route::post('correct', [CorrectController::class, 'correct']);
   });
+  Route::get('stamp_correction_request/list', [CorrectController::class, 'list']);
 });
