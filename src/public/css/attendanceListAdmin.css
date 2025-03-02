@@ -8,3 +8,8 @@
 .not_confirmed {
   background-color: #ceebff;
 }
+
+.name {
+  width: 150px;
+  text-align: center;
+}

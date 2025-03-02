@@ -1,0 +1,10 @@
+.th,
+.td {
+  padding: 10px 30px;
+  text-align: center;
+  width: 50px;
+}
+
+.td--bold {
+  font-weight: bold;
+}

@@ -21,13 +21,6 @@
   font-weight: bold;
 }
 
-.th,
-.td {
-  padding: 10px 30px;
-  text-align: center;
-  width: 50px;
-}
-
 .state {
   width: 100px;
 }

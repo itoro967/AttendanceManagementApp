@@ -1,5 +1,6 @@
 <x-common>
   <x-slot:css>
+    <link rel="stylesheet" href="{{ asset('/css/table-common.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/correctList.css') }}">
   </x-slot:css>
   <div class="inner">

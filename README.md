@@ -22,9 +22,7 @@ erDiagram
 
 users||--o{works:""
 works||--o{breaks:""
-works||--o{corrects:""
-users||--o{correct_works:""
-correct_works||--o{correct_breaks:""
+
 users{
   unsigned_bigint id PK
   string name
