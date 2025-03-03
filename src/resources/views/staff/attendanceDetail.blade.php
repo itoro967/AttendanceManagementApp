@@ -4,7 +4,7 @@
   </x-slot:css>
   <div class="inner">
     <div>勤怠詳細</div>
-    <form action="correct" method="post">
+    <form action="{{ route('staff.correct') }}" method="post">
       @csrf
       <input type="hidden" name="work_id" value="{{$work->id}}">
       <input type="hidden" name="type" value="{{$work->type + 1}}">

@@ -25,10 +25,4 @@ class AdminController extends Controller
         })->where('works.date', $date)->get();
         return view('admin.attendanceListAdmin', compact('works', 'date', 'staffs'));
     }
-    #スタッフの勤怠詳細
-    public function attendanceDetail(string $id)
-    {
-        $work = Work::with('user')->find($id);
-        return view('admin.attendanceDetail', compact('work'));
-    }
 }

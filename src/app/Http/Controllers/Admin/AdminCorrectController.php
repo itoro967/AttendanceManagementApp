@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Work;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 # 修正コントローラ
 class AdminCorrectController extends Controller
@@ -24,10 +23,18 @@ class AdminCorrectController extends Controller
         }
         return redirect()->back();
     }
-    public function list(Request $request)
+    public function correctConfirm(Request $request, string $id)
     {
-        $is_confirmed = $request->input('confirmed') ?? 0;
-        $corrects = Auth::user()->works()->where('type', '<>', 0)->where('is_confirmed', $is_confirmed)->with('user')->get();
-        return view('staff.correctList', compact('corrects'));
+        $work = Work::find($id);
+        return view('admin.correctConfirmAdmin', compact('work'));
+    }
+    public function confirm(Request $request)
+    {
+        $id = $request->input('work_id');
+
+        $work = Work::find($id);
+        $work->is_confirmed = true;
+        $work->update();
+        return redirect()->route('correctList');
     }
 }
