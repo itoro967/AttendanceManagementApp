@@ -12,7 +12,7 @@
         <tbody>
           <tr class="tr">
             <th class="th">名前</th>
-            <td class="td td_name">{{Auth::user()->name}}</td>
+            <td class="td td_name">{{$work->user->name}}</td>
           </tr>
           <tr class="tr">
             <th class="th">日付</th>
@@ -24,6 +24,7 @@
             <td class="td"><input class="input" type="time" step="1" value="{{$work->finish_at}}" name="finish_at" @disabled(!($work->is_confirmed ?? TRUE))></td>
           </tr>
           @foreach($work->rests as $rest)
+          <input type="hidden" name="rest[{{$loop->index}}][rest_id]" value="{{$rest->id}}">
           <tr class="tr">
             <th class="th">休憩:{{$loop->index+1}}</th>
             <td class="td"><input class="input" type="time" step="1" value="{{$rest->begin_at}}" name="rest[{{$loop->index}}][begin_at]" @disabled(!($work->is_confirmed ?? TRUE))></td>

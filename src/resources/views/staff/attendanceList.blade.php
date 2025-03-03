@@ -1,25 +1,25 @@
 <x-common>
   <x-slot:css>
     <link rel="stylesheet" href="{{ asset('/css/table-common.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/attendanceListAdmin.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/attendancelist.css') }}">
   </x-slot:css>
   <div class="inner">
     <div>勤怠一覧</div>
     <div>
-      <a href="?date={{ Carbon\Carbon::parse($date)->addDay(-1)->format('Y-m-d') }}">
+      <a href="?month={{ Carbon\Carbon::parse($month)->addMonthWithoutOverflow(-1)->format('Y-m') }}">
         <img src="{{ asset('/img/arrow_back.svg') }}">
       </a>
       <span>
-        <input type="date" name="" id="calender" value="{{$date}}">
+        <input type="month" name="" id="calender" value="{{$month}}">
       </span>
-      <a href="?date={{ carbon\Carbon::parse($date)->addDay(1)->format('Y-m-d') }}">
+      <a href="?month={{ Carbon\Carbon::parse($month)->addMonthWithoutOverflow(1)->format('Y-m') }}">
         <img src="{{ asset('/img/arrow_forward.svg') }}">
       </a>
     </div>
     <table class="table">
       <thead>
         <tr>
-          <th class="th name">名前</th>
+          <th class="th">日付</th>
           <th class="th">出勤</th>
           <th class="th">退勤</th>
           <th class="th">休憩</th>
@@ -28,18 +28,18 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($users as $user)
+        @foreach ($periods as $period)
         @php
-        $work = $works->where('user_id',$user->id)->first()
+        $work = $works->where('date',$period->format('Y-m-d'))->first()
         @endphp
         <tr @class(["tr","not_confirmed"=> !($work->is_confirmed ?? TRUE)])>
-          <td class="td">{{$user->name}}</td>
+          <td class="td">{{ Carbon\Carbon::parse($period)->isoFormat('MM/DD(ddd)')}}</td>
           @isset($work)
           <td class="td">{{ Carbon\Carbon::parse($work->begin_at)->format('H:i') }}</td>
           <td class="td">{{ Carbon\Carbon::parse($work->finish_at)->format('H:i') }}</td>
           <td class="td">{{ Carbon\Carbon::parse($work->getRestSum())->format('H:i') }}</td>
           <td class="td">{{ Carbon\Carbon::parse($work->getWorkTime()+$work->getRestSum())->format('H:i') }}</td>
-          <td class="td td--bold"><a href="{{$work->id}}">詳細</a></td>
+          <td class="td td--bold"><a href="{{ route('admin.attendanceDetail',['id'=>$work->id]) }}">詳細</a></td>
           @endisset
           @empty($work)
           <td class="td">--:--</td>
@@ -56,5 +56,5 @@
 </x-common>
 <script>
   let calender = document.getElementById('calender');
-  calender.addEventListener('input', () => location.href = `?date=${calender.value}`)
+  calender.addEventListener('input', () => location.href = `?month=${calender.value}`)
 </script>

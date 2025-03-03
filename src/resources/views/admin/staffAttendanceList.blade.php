@@ -39,7 +39,7 @@
           <td class="td">{{ Carbon\Carbon::parse($work->finish_at)->format('H:i') }}</td>
           <td class="td">{{ Carbon\Carbon::parse($work->getRestSum())->format('H:i') }}</td>
           <td class="td">{{ Carbon\Carbon::parse($work->getWorkTime()+$work->getRestSum())->format('H:i') }}</td>
-          <td class="td td--bold"><a href="{{$work->id}}">詳細</a></td>
+          <td class="td td--bold"><a href="{{ route('admin.attendanceDetail',['id'=>$work->id]) }}">詳細</a></td>
           @endisset
           @empty($work)
           <td class="td">--:--</td>

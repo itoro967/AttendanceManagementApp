@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Staff;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Work;
-use Carbon\Carbon;
-use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Auth;
 
-class WorkController extends Controller
+#打刻コントローラー
+class AttendanceController extends Controller
 {
     private function stateCheck()
     {
@@ -38,7 +38,7 @@ class WorkController extends Controller
     public function attendance()
     {
         $state = $this->stateCheck();
-        return view('attendance', compact('state'));
+        return view('staff.attendance', compact('state'));
     }
 
     public function punch(Request $request)
@@ -65,32 +65,6 @@ class WorkController extends Controller
             Work::Today()->update(['finish_at' => now()]);
             $state = 9;
         }
-        return view('attendance', compact('state'));
-    }
-    public function attendanceList(Request $request)
-    {
-        $month = $request->input('month', today()->format('Y-m'));
-        $CarbonMonth = new Carbon($month);
-
-        $startOfMonth = $CarbonMonth->startOfMonth()->toDateString();
-        $endOfMonth = $CarbonMonth->endOfMonth()->toDateString();
-        $periods = CarbonPeriod::create($startOfMonth, $endOfMonth)->toArray();
-
-        #日付毎の最大typeを取得
-        $subQuery = Auth::user()->works()->selectRaw('date as d,MAX(type) as t')
-            ->whereYear('date', '=', substr($month, 0, 4))
-            ->whereMonth('date', '=', substr($month, 5, 2))->groupBy('date');
-
-        $works = Auth::user()->works()->joinSub($subQuery, 'max_works', function ($join) {
-            $join->on('works.type', '=', 'max_works.t')
-                ->on('works.date', '=', 'max_works.d');
-        })->get();
-
-        return view('attendancelist', compact('works', 'month', 'periods'));
-    }
-    public function detail(string $id)
-    {
-        $work = Auth::user()->works->find($id);
-        return view('attendanceDetail', compact('work'));
+        return view('staff.attendance', compact('state'));
     }
 }

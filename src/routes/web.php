@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CorrectController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminCorrectController;
+use App\Http\Controllers\Staff\CorrectController;
+use App\Http\Controllers\Staff\AttendanceController;
+use App\Http\Controllers\Staff\WorkController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WorkController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Staff;
 
@@ -23,21 +26,25 @@ Route::redirect('/', '/attendance');
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->name('staff.')->group(function () {
   Route::prefix('attendance')->group(function () {
-    Route::get('', [WorkController::class, 'attendance']);
-    Route::get('list', [WorkController::class, 'attendanceList']);
-    Route::get('{id}', [WorkController::class, 'detail']);
-    Route::post('punch', [WorkController::class, 'punch']);
-    Route::post('correct', [CorrectController::class, 'correct']);
+    Route::get('', [AttendanceController::class, 'attendance'])->name('attendance'); #打刻画面
+    Route::get('list', [WorkController::class, 'list'])->name('attendanceList'); #勤怠一覧
+    Route::get('{id}', [WorkController::class, 'detail'])->name('attendanceDetail'); #勤怠詳細
+    Route::post('punch', [AttendanceController::class, 'punch'])->name('punch'); #打刻
+    Route::post('correct', [CorrectController::class, 'correct'])->name('correct'); #修正
   });
-  Route::get('stamp_correction_request/list', [CorrectController::class, 'list']);
+  Route::get('stamp_correction_request/list', [CorrectController::class, 'list'])->name('correctList'); #修正一覧
 });
 
-Route::prefix('/admin')->name('admin.')->group(function () {
-  Route::get('/login', [AdminController::class, 'login'])->name('loginAdmin');
 
-  Route::middleware(['auth'])->group(function () {
-    Route::get('/attendance/list', [AdminController::class, 'attendanceList']);
-  });
+Route::get('/admin/login', [AdminController::class, 'login'])->name('login');
+
+Route::middleware(['auth'])->name('admin.')->group(function () {
+  Route::get('/admin/attendance/list', [AdminController::class, 'attendanceList'])->name('attendanceList'); #勤怠一覧
+  Route::get('/attendance/{id}', [AdminController::class, 'attendanceDetail'])->name('attendanceDetail'); #勤怠詳細
+  Route::get('/admin/staff/list', [AdminUserController::class, 'list'])->name('staffList'); #スタッフ一覧
+  Route::get('/attendance/staff/{id}', [AdminUserController::class, 'detail'])->name('staffDetail'); #スタッフの勤怠一覧
+  Route::get('/stamp_correction_request/list', [CorrectController::class, 'list'])->name('correctList'); #修正一覧
+  Route::post('/admin/attendance/correct', [AdminCorrectController::class, 'correct'])->name('correct'); #修正
 });

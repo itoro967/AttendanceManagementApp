@@ -36,7 +36,7 @@
           <td class="td name">{{Carbon\Carbon::parse($correct->date)->format('Y/m/d')}}</td>
           <td class="td target-date">{{$correct->note}}</td>
           <td class="td date">{{$correct->created_at->format('Y/m/d')}}</td>
-          <td class="td detail"><a href="/attendance/{{$correct->id}}">詳細</a></td>
+          <td class="td detail"><a href="{{ route('staff.attendanceDetail',['id'=>$correct->id]) }}">詳細</a></td>
         </tr>
         @endforeach
       </tbody>
