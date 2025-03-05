@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CorrectPostRequest;
 use App\Models\Work;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 # 修正コントローラ
 class CorrectController extends Controller
 {
-    public function correct(Request $request)
+    public function correct(CorrectPostRequest $request)
     {
         $work_data = $request->only(['date', 'begin_at', 'finish_at', 'type', 'note', 'work_id']);
         $work_data['user_id'] = Auth::user()->id;

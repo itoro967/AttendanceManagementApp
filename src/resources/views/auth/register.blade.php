@@ -7,15 +7,23 @@
     @csrf
     <h1 class="page__title">会員登録</h1>
     <label for="name" class="entry__name">ユーザ名</label>
+    <x-alert :message="$errors->first('name')" />
     <input name="name" id="name" type="text" class="input" value="{{ old('name') }}">
 
     <label for="mail" class="entry__name">メールアドレス</label>
+    <x-alert :message="$errors->first('email')" />
     <input name="email" id="mail" type="email" class="input" value="{{ old('email') }}">
 
     <label for="password" class="entry__name">パスワード</label>
+    @if($errors->first('password') != __('validation.confirmed'))
+    <x-alert :message="$errors->first('password')" />
+    @endif
     <input name="password" id="password" type="password" class="input">
 
     <label for="password_confirm" class="entry__name">確認用パスワード</label>
+    @if($errors->first('password') == __('validation.confirmed'))
+    <x-alert :message="$errors->first('password')" />
+    @endif
     <input name="password_confirmation" id="password_confirm" type="password" class="input">
     <button class="register-button">登録する</button>
     <a href="/login" class="link">ログインはこちら</a>

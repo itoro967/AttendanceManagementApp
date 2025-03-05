@@ -37,6 +37,11 @@
           </tr>
         </tbody>
       </table>
+      <x-alert :message="$errors->first('date')"/>  
+      <x-alert :message="$errors->first('begin_at')"/>
+      <x-alert :message="collect($errors->first('rest.*.begin_at'))->first()"/>
+      <x-alert :message="collect($errors->first('rest.*.finish_at'))->first()"/>
+      <x-alert :message="$errors->first('note')"/>
       @if($work->is_confirmed ?? TRUE)
       <button type="submit" class="button">修正</button>
       @else

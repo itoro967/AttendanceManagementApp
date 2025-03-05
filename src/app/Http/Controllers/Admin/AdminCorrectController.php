@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CorrectPostRequest;
 use App\Models\Work;
 use Illuminate\Http\Request;
 
 # 修正コントローラ
 class AdminCorrectController extends Controller
 {
-    public function correct(Request $request)
+    public function correct(CorrectPostRequest $request)
     {
         $work_data = $request->only(['date', 'begin_at', 'finish_at', 'type', 'note', 'work_id']);
         $rest_data_list = $request->input('rest');

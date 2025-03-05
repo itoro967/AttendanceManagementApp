@@ -7,7 +7,7 @@
       @if ($state==0)
       勤務外
       @elseif ($state==1)
-      勤務中
+      出勤中
       @elseif ($state==2)
       休憩中
       @elseif ($state==9)
