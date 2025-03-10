@@ -27,6 +27,7 @@ Route::redirect('/', '/attendance');
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 
+// 一般ユーザー
 Route::middleware(['auth', Role::class . ':staff'])->name('staff.')->group(function () {
   Route::prefix('attendance')->group(function () {
     Route::get('', [AttendanceController::class, 'attendance'])->name('attendance'); #打刻画面
@@ -39,6 +40,7 @@ Route::middleware(['auth', Role::class . ':staff'])->name('staff.')->group(funct
 
 Route::get('/admin/login', [AdminController::class, 'login'])->name('login');
 
+// 管理者
 Route::middleware(['auth', Role::class . ':admin'])->name('admin.')->group(function () {
   Route::get('/admin/attendance/list', [AdminController::class, 'attendanceList'])->name('attendanceList'); #勤怠一覧
 

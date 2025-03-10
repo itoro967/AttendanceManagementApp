@@ -21,7 +21,6 @@ class Role
         } elseif (!Auth::user()->is_admin && $role === 'staff') {
             return $next($request);
         }
-        dd($role);
-        return redirect()->route('loginAdmin');
+        return abort(403);
     }
 }

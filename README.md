@@ -21,7 +21,7 @@
 erDiagram
 
 users||--o{works:""
-works||--o{breaks:""
+works||--o{rests:""
 
 users{
   unsigned_bigint id PK
@@ -45,7 +45,7 @@ works{
   timestamp created_at
   timestamp updated_at
 }
-breaks{
+rests{
   unsigned_bigint id PK
   unsigned_bigint work_id FK
   time begin_at
