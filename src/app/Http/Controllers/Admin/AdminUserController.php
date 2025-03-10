@@ -36,6 +36,6 @@ class AdminUserController extends Controller
             $join->on('works.type', '=', 'max_works.t')
                 ->on('works.date', '=', 'max_works.d');
         })->get();
-        return view('admin.staffAttendanceList', compact('works', 'month', 'periods'));
+        return view('admin.staffAttendanceList', compact('works', 'month', 'periods','staff'));
     }
 }

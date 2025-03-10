@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 90px 0;
+  margin: 50px auto;
+  width: 700px;
 }
 
 .th,
 .td {
   padding: 10px 30px;
-  vertical-align: middle;
-  width: 100px;
+  width: 175px;
 }
 
 .td_name {

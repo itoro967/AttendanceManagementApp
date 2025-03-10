@@ -1,8 +1,21 @@
+.table {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.tr {
+  border: 3px solid #ececec;
+  border-left: 0;
+  border-right: 0;
+}
+
 .th,
 .td {
-  padding: 10px 30px;
+  padding: 10px 10px;
   text-align: center;
   width: 50px;
+  vertical-align: middle;
 }
 
 .td--bold {

@@ -4,15 +4,17 @@
     <link rel="stylesheet" href="{{ asset('/css/attendanceListAdmin.css') }}">
   </x-slot:css>
   <div class="inner">
-    <div>勤怠一覧</div>
-    <div>
-      <a href="?date={{ Carbon\Carbon::parse($date)->addDay(-1)->format('Y-m-d') }}">
+    <div class="page-title">{{Carbon\Carbon::parse($date)->format('Y年m月d日')}}の勤怠</div>
+    <div class="calender-box">
+      <a class="arrow-button" href="?date={{ Carbon\Carbon::parse($date)->addDay(-1)->format('Y-m-d') }}">
         <img src="{{ asset('/img/arrow_back.svg') }}">
+        前日
       </a>
       <span>
-        <input type="date" name="" id="calender" value="{{$date}}">
+        <input type="date" id="calender" class="calender" value="{{$date}}">
       </span>
-      <a href="?date={{ carbon\Carbon::parse($date)->addDay(1)->format('Y-m-d') }}">
+      <a class="arrow-button" href="?date={{ carbon\Carbon::parse($date)->addDay(1)->format('Y-m-d') }}">
+        翌日
         <img src="{{ asset('/img/arrow_forward.svg') }}">
       </a>
     </div>
@@ -56,5 +58,5 @@
 </x-common>
 <script>
   let calender = document.getElementById('calender');
-  calender.addEventListener('input', () => location.href = `?date=${calender.value}`)
+  calender.addEventListener('change', () => location.href = `?date=${calender.value}`)
 </script>

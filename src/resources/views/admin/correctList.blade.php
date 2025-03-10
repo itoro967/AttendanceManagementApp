@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('/css/correctList.css') }}">
   </x-slot:css>
   <div class="inner">
-    <div>申請一覧</div>
+    <div class="page-title">申請一覧</div>
     <div class="tab">
       @php
       $confirmed=request()->input('confirmed')
@@ -34,8 +34,8 @@
             @endif</td>
           <td class="td state">{{$correct->user->name}}</td>
           <td class="td name">{{Carbon\Carbon::parse($correct->date)->format('Y/m/d')}}</td>
-          <td class="td target-date">{{$correct->note}}</td>
-          <td class="td date">{{$correct->created_at->format('Y/m/d')}}</td>
+          <td class="td"><span class="note">{{$correct->note}}</span></td>
+          <td class="td target-date">{{$correct->created_at->format('Y/m/d')}}</td>
           <td class="td detail"><a href="{{ route('admin.correctConfirm',['attendance_correct_request'=>$correct->id]) }}">詳細</a></td>
         </tr>
         @endforeach

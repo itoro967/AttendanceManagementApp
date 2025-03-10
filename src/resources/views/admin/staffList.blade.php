@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('/css/staffList.css') }}">
   </x-slot:css>
   <div class="inner">
-    <div>勤怠一覧</div>
+    <div class="page-title">スタッフ一覧</div>
     <table class="table">
       <thead>
         <tr>

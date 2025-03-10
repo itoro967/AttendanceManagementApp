@@ -2,7 +2,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 90px 0;
+  margin: 50px auto;
+  width: 700px;
+}
+
+.calender-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 10px 0;
+  margin: 10px 4px;
+}
+.arrow-button{
+  display: flex;
+  align-items: center;
+}
+.calender{
+  border: none;
+  font-size: 16px;
 }
 
 .not_confirmed {

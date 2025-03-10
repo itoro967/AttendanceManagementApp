@@ -4,15 +4,17 @@
     <link rel="stylesheet" href="{{ asset('/css/attendancelist.css') }}">
   </x-slot:css>
   <div class="inner">
-    <div>勤怠一覧</div>
-    <div>
-      <a href="?month={{ Carbon\Carbon::parse($month)->addMonthWithoutOverflow(-1)->format('Y-m') }}">
+    <div class="page-title">勤怠一覧</div>
+    <div class="calender-box">
+      <a class="arrow-button" href="?month={{ Carbon\Carbon::parse($month)->addMonthWithoutOverflow(-1)->format('Y-m') }}">
         <img src="{{ asset('/img/arrow_back.svg') }}">
+        前月
       </a>
       <span>
-        <input type="month" name="" id="calender" value="{{$month}}">
+        <input type="month" id="calender" class="calender" value="{{$month}}">
       </span>
-      <a href="?month={{ Carbon\Carbon::parse($month)->addMonthWithoutOverflow(1)->format('Y-m') }}">
+      <a class="arrow-button" href="?month={{ Carbon\Carbon::parse($month)->addMonthWithoutOverflow(1)->format('Y-m') }}">
+        翌月
         <img src="{{ asset('/img/arrow_forward.svg') }}">
       </a>
     </div>

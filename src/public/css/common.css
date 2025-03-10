@@ -29,17 +29,6 @@ body {
   display: inline;
 }
 
-.table {
-  background-color: #FFFFFF;
-  border-radius: 10px;
-}
-
-.tr {
-  border: 3px solid #ececec;
-  border-left: 0;
-  border-right: 0;
-}
-
 .button {
   color: #FFFFFF;
   background-color: #000000;
@@ -50,4 +39,14 @@ body {
   border-radius: 10px;
   cursor: pointer;
   float: right;
+}
+.page-title{
+  font-weight: bold;
+  font-size: 28px;
+  padding: 5px 10px;
+  border-left: solid 10px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  margin: 10px 0;
 }

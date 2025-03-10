@@ -1,9 +1,10 @@
 <x-common>
   <x-slot:css>
+    <link rel="stylesheet" href="{{ asset('/css/table-common.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/attendanceDetail.css') }}">
   </x-slot:css>
   <div class="inner">
-    <div>勤怠詳細</div>
+    <div class="page-title">勤怠詳細</div>
     <form action="{{ route('staff.correct') }}" method="post">
       @csrf
       <input type="hidden" name="work_id" value="{{$work->id}}">
