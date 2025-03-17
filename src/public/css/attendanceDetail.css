@@ -1,11 +1,3 @@
-.inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 50px auto;
-  width: 700px;
-}
-
 .th,
 .td {
   padding: 10px 30px;

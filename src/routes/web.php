@@ -11,6 +11,8 @@ use App\Http\Controllers\Staff\WorkController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Role;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +30,7 @@ Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 
 // 一般ユーザー
-Route::middleware(['auth', Role::class . ':staff'])->name('staff.')->group(function () {
+Route::middleware(['auth', Role::class . ':staff','verified'])->name('staff.')->group(function () {
   Route::prefix('attendance')->group(function () {
     Route::get('', [AttendanceController::class, 'attendance'])->name('attendance'); #打刻画面
     Route::get('list', [WorkController::class, 'list'])->name('attendanceList'); #勤怠一覧
@@ -53,7 +55,22 @@ Route::middleware(['auth', Role::class . ':admin'])->name('admin.')->group(funct
 });
 
 // 共通のルート
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
   Route::get('/stamp_correction_request/list', [CommonCorrectController::class, 'list'])->name('correctList'); #修正一覧});
   Route::get('/attendance/{id}', [CommonWorkController::class, 'detail'])->name('detail'); #勤怠詳細
 });
+
+// メール認証
+Route::get('/email/verify', function () {
+  return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function ( EmailVerificationRequest $request) {
+  $request->fulfill();
+  return redirect('/attendance');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+  $request->user()->sendEmailVerificationNotification();
+  return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
