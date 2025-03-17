@@ -3,10 +3,10 @@
 return [
     'required' => ':attributeを入力してください',
     'min' => [
-        'string' => ':attributeは :min 文字以上で入力してください',
+        'string' => ':attributeは:min文字以上で入力してください',
     ],
     'max' => [
-        'string' => ':attributeは :max 文字以内で入力してください',
+        'string' => ':attributeは:max文字以内で入力してください',
     ],
     'unique' => [
         'email' => 'このメールアドレスは既に登録されています',
