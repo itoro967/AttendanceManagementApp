@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function attendanceList(Request $request)
     {
         $date = $request->input('date', today()->format('Y-m-d'));
-        $staffs = User::all();
+        $staffs = User::where('is_admin', false)->get();
         $subquery = Work::where('date', $date)->groupBy('user_id')->selectRaw('user_id, max(type) as max_type');
         $works = Work::joinSub($subquery, 'sub', function ($join) {
             $join->on('works.user_id', 'sub.user_id')->on('works.type', 'sub.max_type');

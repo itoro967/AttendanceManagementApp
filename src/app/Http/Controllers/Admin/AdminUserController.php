@@ -15,7 +15,7 @@ class AdminUserController extends Controller
     #スタッフ一覧
     public function list()
     {
-        $staffs = User::all();
+        $staffs = User::where('is_admin', false)->get();
         return view('admin.staffList', compact('staffs'));
     }
     #特定ユーザーの勤怠一覧
