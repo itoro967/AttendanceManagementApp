@@ -12,6 +12,9 @@
 
 <body>
     <x-header />
+    @if(session('message'))
+    <div class="session_message">{{session('message')}}</div>
+    @endif
     {{ $slot }}
 </body>
 

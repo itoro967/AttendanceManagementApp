@@ -20,6 +20,6 @@ class CorrectController extends Controller
         foreach ($rest_data_list as $rest_data) {
             $work->rests()->create($rest_data);
         }
-        return redirect()->route('staff.attendanceList');
+        return redirect()->route('staff.attendanceList')->with('message','申請完了');
     }
 }

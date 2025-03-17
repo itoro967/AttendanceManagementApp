@@ -1,7 +1,7 @@
 .register-form,
 .login-form {
   width: 500px;
-  margin: auto;
+  margin: 60px auto;
   display: block;
 }
 

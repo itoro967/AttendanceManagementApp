@@ -7,6 +7,7 @@ body {
   align-items: center;
   margin: 50px auto;
   width: 700px;
+  z-index: 0;
 }
 .header {
   display: flex;
@@ -16,6 +17,10 @@ body {
   background-color: #000000;
   color: #FFFFFF;
   vertical-align: middle;
+  z-index: 2;
+  position:fixed;
+  top: 0;
+  width: 100%;
 }
 
 .header-button {
@@ -55,4 +60,29 @@ body {
   box-sizing: border-box;
   text-align: left;
   margin: 10px 0;
+}
+.session_message{
+  position: fixed;
+  top: 40px;
+  text-align: center;
+  width: 100%;
+  padding: 5px;
+  background-color: #7fffff;
+  font-size: 24px;
+  animation: message 5.5s ease-in-out forwards;
+  z-index: 1;
+}
+@keyframes message{
+  0% {
+    transform: translate(0, -100%);
+  }
+  5% {
+    transform: translate(0, 0);
+  }
+  95% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, -100%);
+  }
 }

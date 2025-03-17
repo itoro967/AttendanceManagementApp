@@ -22,7 +22,7 @@ class AdminCorrectController extends Controller
             $rest = $work->rests()->find($rest_data['rest_id']);
             $rest->update($rest_data);
         }
-        return redirect()->back();
+        return redirect()->back()->with('message', '修正完了');
     }
     public function correctConfirm(Request $request, string $id)
     {
@@ -36,6 +36,6 @@ class AdminCorrectController extends Controller
         $work = Work::find($id);
         $work->is_confirmed = true;
         $work->update();
-        return redirect()->route('correctList');
+        return redirect()->route('correctList')->with('message','承認完了');
     }
 }
