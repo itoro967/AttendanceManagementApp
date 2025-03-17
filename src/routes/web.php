@@ -49,6 +49,7 @@ Route::middleware(['auth', Role::class . ':admin'])->name('admin.')->group(funct
   Route::post('/admin/attendance/correct', [AdminCorrectController::class, 'correct'])->name('correct'); #修正
   Route::get('/stamp_correction_request/approve/{attendance_correct_request}', [AdminCorrectController::class, 'correctConfirm'])->name('correctConfirm'); #修正確認
   Route::post('/confirm', [AdminCorrectController::class, 'confirm'])->name('confirm'); #修正確認
+  Route::get('/admin/staff/download/{id}/{month}', [AdminUserController::class, 'downloadCsv'])->name('downloadCsv'); #CSVダウンロード
 });
 
 // 共通のルート

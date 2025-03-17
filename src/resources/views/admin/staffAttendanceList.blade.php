@@ -54,6 +54,7 @@
         @endforeach
       </tbody>
     </table>
+    <a href="{{ route('admin.downloadCsv',['id'=>$staff->id,'month'=>$month]) }}" class="button">CSV出力</a>
   </div>
 </x-common>
 <script>
