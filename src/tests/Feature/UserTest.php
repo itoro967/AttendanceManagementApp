@@ -13,7 +13,7 @@ class UserTest extends TestCase
     private $loginUrl = '/login';
     private $attendanceUrl = '/attendance';
 
-    #ID:1
+    //ID:1
     public function testUserRegister()
     {
         $response = $this->post($this->registerUrl, [
@@ -76,7 +76,7 @@ class UserTest extends TestCase
         ]);
     }
 
-    #ID:2
+    //ID:2
     public function testLogin()
     {
         $response = $this->post($this->loginUrl, [
@@ -102,7 +102,7 @@ class UserTest extends TestCase
         ]);
     }
 
-    #ID:3
+    //ID:3
     public function testAdminLogin()
     {
         $response = $this->post($this->loginUrl, [

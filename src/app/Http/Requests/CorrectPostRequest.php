@@ -25,11 +25,9 @@ class CorrectPostRequest extends FormRequest
             'date' => 'required',
             'begin_at' => 'required|before:finish_at',
             'finish_at' => 'required',
-            'type' => 'required',
             'note' => 'required|max:255',
-            'rest' => 'required',
-            'rest.*.begin_at' => 'required|before:rest.*.finish_at|after:begin_at',
-            'rest.*.finish_at' => 'required|before:finish_at',
+            'rest.*.begin_at' => 'before:rest.*.finish_at|after:begin_at',
+            'rest.*.finish_at' => 'before:finish_at',
         ];
     }
 }

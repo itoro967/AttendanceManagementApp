@@ -13,7 +13,7 @@ class AdminCorrectController extends Controller
     public function correct(CorrectPostRequest $request)
     {
         $work_data = $request->only(['date', 'begin_at', 'finish_at', 'type', 'note', 'work_id']);
-        $rest_data_list = $request->input('rest');
+        $rest_data_list = $request->input('rest',[]);
 
         $work = Work::find($work_data['work_id']);
         $work->update($work_data);
