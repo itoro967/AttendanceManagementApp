@@ -1,19 +1,23 @@
 # AttendanceManagementApp
 
 ## 環境構築 (Mac)
-
-### Dockerビルド
-1. git clone https://github.com/itoro967/AttendanceManagementApp.git
-1. cd AttendanceManagementApp
-1. docker-compose up -d --build
-
-### Laravel環境構築
-1. docker compose exec php bash
-1. composer install
-1. cp .env.example .env
-1. php artisan key:generate
-1. php artisan migrate
-1. php artisan db:seed
+### Mac,Makefileを使用する場合
+1. `git clone https://github.com/itoro967/AttendanceManagementApp.git`
+1. `cd AttendanceManagementApp`
+1. `make init`
+1. 完了
+### Mac,コマンドラインを使用する場合
+#### Dockerビルド
+1. `git clone https://github.com/itoro967/AttendanceManagementApp.git`
+1. `cd AttendanceManagementApp`
+1. `docker compose up -d --build`
+#### Laravel環境構築
+1. `docker compose exec php bash`
+1. `composer install`
+1. `cp .env.example .env`
+1. `php artisan key:generate`
+1. `php artisan migrate`
+1. `php artisan db:seed`
 1. 完了
 
 ### 仕様技術
