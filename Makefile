@@ -1,3 +1,11 @@
+init:
+	docker-compose up -d --build
+	docker compose exec php composer install
+	cp .env.example .env
+	docker compose exec php php artisan key:generate
+	docker compose exec php php artisan migrate
+	docker compose exec php php artisan db:seed
+
 start:
 	docker compose start
 

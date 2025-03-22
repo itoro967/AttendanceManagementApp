@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -32,10 +34,17 @@ class UserSeeder extends Seeder
     {
         #NOTE 連続した日付を作りたかったためFactory不使用
         $startDate = now();
-        for ($i = -30; $i < 0; $i++) {
+        for ($i = -90; $i < 0; $i++) {
             $dateArray[] = $startDate->copy()->addDays($i)->toDateString();
         }
         $users = User::factory()->count(10)->create();
+        $users->push(User::create([
+            'email' => 'hoge@hoge.jp',
+            'name' => 'hoge',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+        ]));
         foreach ($users as $user) {
             foreach ($dateArray as $date) {
                 $work = $user->works()->create([

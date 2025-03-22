@@ -1,13 +1,20 @@
 # AttendanceManagementApp
 
-## 環境構築
+## 環境構築 (Mac)
 
 ### Dockerビルド
-- git clone https://github.com/itoro967/AttendanceManagementApp.git
-- cd AttendanceManagementApp
-- sudo docker-compose up -d --build
+1. git clone https://github.com/itoro967/AttendanceManagementApp.git
+1. cd AttendanceManagementApp
+1. docker-compose up -d --build
 
 ### Laravel環境構築
+1. docker compose exec php bash
+1. composer install
+1. cp .env.example .env
+1. php artisan key:generate
+1. php artisan migrate
+1. php artisan db:seed
+1. 完了
 
 ### 仕様技術
 - Laravel 10.48.25
@@ -15,6 +22,22 @@
 - nginx 1.27.2
 - MySQL 9.0.1
 - PHP 8.2-fpm
+
+## ログイン情報
+
+|種別|名前|メールアドレス|パスワード|
+|-|-|-|-|
+管理者|admin|admin@admin.jp|password|
+一般ユーザー|hoge|hoge@hoge.jp|password|
+
+## URL
+- 開発環境: http://localhost/
+  - 管理者ログイン: http://localhost/admin/login
+  - 一般ユーザーログイン: http://localhost/login
+- MailHog: http://localhost:8025/
+
+## 備考
+- 打刻操作は1秒以内に2回以上しないこと
 
 ## ER図
 ```mermaid
@@ -54,6 +77,3 @@ rests{
   timestamp updated_at
 }
 ```
-## URL
-- 開発環境 : http://localhost/
-- MailHog : http://localhost:8025/
